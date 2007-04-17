@@ -1,14 +1,10 @@
-%define	name	autotrace
-%define	version	0.31.1
-%define	release	%mkrel 21
-
 %define	major	4
 %define	libname	%mklibname autotrace %{major}
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release} 
-Summary:	A program for converting bitmap to vector graphics
+Name:		autotrace
+Version:	0.31.1
+Release:	%mkrel 22
+Summary:	Program for converting bitmap to vector graphics
 Group:		Publishing
 License:	GPL
 URL:		http://autotrace.sourceforge.net
