@@ -8,6 +8,7 @@ Summary:	Program for converting bitmap to vector graphics
 Group:		Publishing
 License:	GPL
 URL:		http://autotrace.sourceforge.net
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:	http://prdownload.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		autotrace-0.31.1-imagick6.patch
 Patch1:		autotrace-0.31.1-automake18.patch
