@@ -3,7 +3,7 @@
 
 Name:		autotrace
 Version:	0.31.1
-Release:	%mkrel 23
+Release:	%mkrel 24
 Summary:	Program for converting bitmap to vector graphics
 Group:		Publishing
 License:	GPL
@@ -13,7 +13,7 @@ Source0:	http://prdownload.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		autotrace-0.31.1-imagick6.patch
 Patch1:		autotrace-0.31.1-automake18.patch
 BuildRequires:	pstoedit-devel
-BuildRequires:	ImageMagick-devel
+BuildRequires:	imagemagick-devel
 %if %mdkversion >= 1020
 BuildRequires:	multiarch-utils >= 1.0.3
 %endif
