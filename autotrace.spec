@@ -3,7 +3,7 @@
 
 Name:		autotrace
 Version:	0.31.1
-Release:	%mkrel 26
+Release:	%mkrel 27
 Summary:	Program for converting bitmap to vector graphics
 Group:		Publishing
 License:	GPL
