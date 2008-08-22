@@ -13,11 +13,12 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:	http://prdownload.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		autotrace-0.31.1-imagick6.patch
 Patch1:		autotrace-0.31.1-automake18.patch
+Patch2:		autotrace-0.31.1-swf-output.patch
 BuildRequires:	pstoedit-devel
 BuildRequires:	imagemagick-devel
 BuildRequires:	multiarch-utils >= 1.0.3
 # (Abel) doesn't work with newer libming
-BuildConflicts:	libming-devel
+#BuildConflicts:	libming-devel
 Provides:	fonttracer
 Requires:	%{libname} = %{version}
 
@@ -55,6 +56,7 @@ developing applications based on autotrace.
 %setup -q
 %patch0 -p1 -b .imagick6
 %patch1 -p1 -b .automake18
+%patch2
 
 autoconf
 
