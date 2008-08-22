@@ -1,12 +1,13 @@
 %define	major	4
-%define	libname	%mklibname autotrace %{major}
+%define	libname	%mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
 
 Name:		autotrace
 Version:	0.31.1
 Release:	%mkrel 27
 Summary:	Program for converting bitmap to vector graphics
 Group:		Publishing
-License:	GPL
+License:	GPLv2+ and LGPLv2+
 URL:		http://autotrace.sourceforge.net
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:	http://prdownload.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
@@ -14,9 +15,7 @@ Patch0:		autotrace-0.31.1-imagick6.patch
 Patch1:		autotrace-0.31.1-automake18.patch
 BuildRequires:	pstoedit-devel
 BuildRequires:	imagemagick-devel
-%if %mdkversion >= 1020
 BuildRequires:	multiarch-utils >= 1.0.3
-%endif
 # (Abel) doesn't work with newer libming
 BuildConflicts:	libming-devel
 Provides:	fonttracer
@@ -40,15 +39,15 @@ Group:		System/Libraries
 This package contains the libraries needed to run programs dynamically
 linked with autotrace libraries.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Static libraries and header files for autotrace development
 Group:		Development/C
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
-Obsoletes:	%{name}-devel
+Obsoletes:	%{name}4-devel
 
-%description -n %{libname}-devel
+%description -n %{develname}
 This package contains the static libraries and header files for
 developing applications based on autotrace.
 
@@ -66,9 +65,7 @@ autoconf
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
-%if %mdkversion >= 1020
 %multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/autotrace-config
-%endif
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -89,14 +86,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n	%{libname}
 %defattr(-,root,root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
-%files -n	%{libname}-devel
+%files -n	%{develname}
 %defattr(-,root,root)
 %doc README
-%if %mdkversion >= 1020
 %multiarch %{multiarch_bindir}/autotrace-config
-%endif
 %{_bindir}/autotrace-config
 %{_includedir}/*
 %{_libdir}/*.so
