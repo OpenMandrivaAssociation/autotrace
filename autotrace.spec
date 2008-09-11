@@ -1,26 +1,25 @@
-%define	major	4
-%define	libname	%mklibname %{name} %{major}
-%define develname %mklibname %{name} -d
+%define	major 3
+%define	libname %mklibname autotrace %{major}
+%define	develname %mklibname autotrace -d
 
+Summary:	Program for converting bitmap to vector graphics
 Name:		autotrace
 Version:	0.31.1
 Release:	%mkrel 27
-Summary:	Program for converting bitmap to vector graphics
 Group:		Publishing
 License:	GPLv2+ and LGPLv2+
 URL:		http://autotrace.sourceforge.net
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:	http://prdownload.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-Patch0:		autotrace-0.31.1-imagick6.patch
-Patch1:		autotrace-0.31.1-automake18.patch
-Patch2:		autotrace-0.31.1-swf-output.patch
+Patch0:		autotrace_0.31.1-13.diff
+Patch1:		autotrace-0.31.1-swf-output.patch
 BuildRequires:	pstoedit-devel
 BuildRequires:	imagemagick-devel
 BuildRequires:	multiarch-utils >= 1.0.3
-# (Abel) doesn't work with newer libming
-#BuildConflicts:	libming-devel
+# (Abel) doesn't work with newer libming                                           
+#BuildConflicts:	libming-devel                                               
 Provides:	fonttracer
 Requires:	%{libname} = %{version}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Autotrace is a program for converting bitmap to vector graphics.
@@ -46,28 +45,30 @@ Group:		Development/C
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
-Obsoletes:	%{name}4-devel
+Obsoletes:	%{name}-devel
+Obsoletes:	%{mklibname autotrace 4 -d}
 
 %description -n %{develname}
 This package contains the static libraries and header files for
 developing applications based on autotrace.
 
 %prep
-%setup -q
-%patch0 -p1 -b .imagick6
-%patch1 -p1 -b .automake18
-%patch2
 
-autoconf
+%setup -q
+%patch0 -p1
+%patch1 -p0
 
 %build
 %configure2_5x
+
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+
 %makeinstall_std
-%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/autotrace-config
+
+%multiarch_binaries %{buildroot}%{_bindir}/autotrace-config
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -78,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -86,11 +87,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/autotrace
 %{_mandir}/man1/*
 
-%files -n	%{libname}
+%files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
 
-%files -n	%{develname}
+%files -n %{develname}
 %defattr(-,root,root)
 %doc README
 %multiarch %{multiarch_bindir}/autotrace-config
@@ -101,5 +102,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.a
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/aclocal/*
-
-
