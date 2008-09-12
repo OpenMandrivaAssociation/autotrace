@@ -5,7 +5,7 @@
 Summary:	Program for converting bitmap to vector graphics
 Name:		autotrace
 Version:	0.31.1
-Release:	%mkrel 27
+Release:	%mkrel 28
 Group:		Publishing
 License:	GPLv2+ and LGPLv2+
 URL:		http://autotrace.sourceforge.net
@@ -34,6 +34,10 @@ Supported formats:
 %package -n	%{libname}
 Summary:	Autotrace libraries
 Group:		System/Libraries
+# In the past, a package libautotrace4 existed which in reality
+# contained /usr/lib/libautotrace.so.3.0.0. Make the correct
+# libautotrace3 conflict with the wrong libautotrace4, to fix upgrade
+Conflicts:	%mklibname autotrace 4
 
 %description -n	%{libname}
 This package contains the libraries needed to run programs dynamically
