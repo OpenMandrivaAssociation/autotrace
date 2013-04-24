@@ -5,7 +5,7 @@
 Summary:		Program for converting bitmap to vector graphics
 Name:		autotrace
 Version:		0.31.1
-Release:		33
+Release:		34
 Group:		Publishing
 License:		GPLv2+ and LGPLv2+
 URL:		http://autotrace.sourceforge.net
@@ -16,7 +16,7 @@ Patch2:		autotrace-0.31.1-libpng-1.5.patch
 BuildRequires:	pstoedit-devel
 BuildRequires:	imagemagick-devel
 BuildRequires:	multiarch-utils >= 1.0.3
-BuildRequires:	libexpat-devel
+BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(libpng)
 # (Abel) doesn't work with newer libming
 #BuildConflicts:	libming-devel
