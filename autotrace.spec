@@ -1,6 +1,8 @@
 %define	major		3
 %define	libname		%mklibname autotrace %{major}
 %define	develname	%mklibname autotrace -d
+%define _disable_lto 1
+%define _disable_rebuild_configure 1
 
 Summary:		Program for converting bitmap to vector graphics
 Name:		autotrace
