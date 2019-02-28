@@ -1,0 +1,33 @@
+diff -up autotrace-0.31.1/autotrace.pc.in.omv~ autotrace-0.31.1/autotrace.pc.in
+diff -up autotrace-0.31.1/configure.in.omv~ autotrace-0.31.1/configure.in
+--- autotrace-0.31.1/configure.in.omv~	2019-02-28 19:14:35.196935812 +0100
++++ autotrace-0.31.1/configure.in	2019-02-28 19:14:43.469064029 +0100
+@@ -188,9 +188,9 @@ if test "x$HAVE_LIBPNG_STAGE1" = "xyes"
+ 		HAVE_LIBPNG=yes ,,-lz -lm)
+ 	if test "x$HAVE_LIBPNG" = "xyes" ; then
+ 		LIBPNG_LDFLAGS="-lpng -lz -lm"
+-                PKGCONFIG_REQS="$PKGCONFIG_REQS, libpng12"
+-                if pkg-config --exists libpng12 ; then
+-                   LIBPNG_LDFLAGS="`pkg-config --libs libpng12`"
++                PKGCONFIG_REQS="$PKGCONFIG_REQS, libpng"
++                if pkg-config --exists libpng ; then
++                   LIBPNG_LDFLAGS="`pkg-config --libs libpng`"
+                 fi
+ 		AC_SUBST(LIBPNG_LDFLAGS)
+ 		AC_DEFINE(HAVE_LIBPNG)
+diff -up autotrace-0.31.1/configure.omv~ autotrace-0.31.1/configure
+--- autotrace-0.31.1/configure.omv~	2019-02-28 19:14:45.403093998 +0100
++++ autotrace-0.31.1/configure	2019-02-28 19:14:53.127213698 +0100
+@@ -20953,9 +20953,9 @@ fi
+ 
+ 	if test "x$HAVE_LIBPNG" = "xyes" ; then
+ 		LIBPNG_LDFLAGS="-lpng -lz -lm"
+-                PKGCONFIG_REQS="$PKGCONFIG_REQS, libpng12"
+-                if pkg-config --exists libpng12 ; then
+-                   LIBPNG_LDFLAGS="`pkg-config --libs libpng12`"
++                PKGCONFIG_REQS="$PKGCONFIG_REQS, libpng"
++                if pkg-config --exists libpng ; then
++                   LIBPNG_LDFLAGS="`pkg-config --libs libpng`"
+                 fi
+ 
+ 		cat >>confdefs.h <<\_ACEOF

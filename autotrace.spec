@@ -15,6 +15,7 @@ Source0:		http://prdownload.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		autotrace_0.31.1-13.diff
 Patch1:		autotrace-0.31.1-swf-output.patch
 Patch2:		autotrace-0.31.1-libpng-1.5.patch
+Patch3:		autotrace-0.31.1-libpng16.patch
 BuildRequires:	pstoedit-devel
 BuildRequires:	imagemagick6-devel
 BuildRequires:	pkgconfig(expat)
@@ -58,6 +59,7 @@ developing applications based on autotrace.
 %patch0 -p1
 %patch1 -p0
 %patch2 -p0
+%patch3 -p1 -b .0003~
 
 %build
 %configure
