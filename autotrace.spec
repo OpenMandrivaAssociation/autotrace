@@ -7,7 +7,7 @@
 Summary:		Program for converting bitmap to vector graphics
 Name:		autotrace
 Version:		0.31.1
-Release:		41
+Release:		42
 Group:		Publishing
 License:		GPLv2+ and LGPLv2+
 URL:		http://autotrace.sourceforge.net
@@ -16,8 +16,7 @@ Patch0:		autotrace_0.31.1-13.diff
 Patch1:		autotrace-0.31.1-swf-output.patch
 Patch2:		autotrace-0.31.1-libpng-1.5.patch
 BuildRequires:	pstoedit-devel
-BuildRequires:	imagemagick-devel
-BuildRequires:	multiarch-utils >= 1.0.3
+BuildRequires:	imagemagick6-devel
 BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(libpng)
 # (Abel) doesn't work with newer libming
@@ -36,10 +35,6 @@ formats:
 %package -n	%{libname}
 Summary:		Autotrace libraries
 Group:		System/Libraries
-# In the past, a package libautotrace4 existed which in reality
-# contained /usr/lib/libautotrace.so.3.0.0. Make the correct
-# libautotrace3 conflict with the wrong libautotrace4, to fix upgrade
-Conflicts:	%mklibname autotrace 4
 
 %description -n	%{libname}
 This package contains the libraries needed to run programs dynamically
@@ -65,12 +60,11 @@ developing applications based on autotrace.
 %patch2 -p0
 
 %build
-%configure2_5x
+%configure
 %make
 
 %install
 %makeinstall_std
-%multiarch_binaries %{buildroot}%{_bindir}/autotrace-config
 
 %files
 %doc AUTHORS ChangeLog COPYING FAQ README THANKS
@@ -82,7 +76,6 @@ developing applications based on autotrace.
 
 %files -n %{develname}
 %doc README
-%{multiarch_bindir}/autotrace-config
 %{_bindir}/autotrace-config
 %{_includedir}/*
 %{_libdir}/*.so
