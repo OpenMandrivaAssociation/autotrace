@@ -20,6 +20,7 @@ BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	intltool
 BuildRequires:	gettext-devel
+BuildRequires:	glib-gettextize
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
