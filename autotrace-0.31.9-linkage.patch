@@ -1,0 +1,19 @@
+diff -up autotrace-0.31.9/Makefile.am.omv~ autotrace-0.31.9/Makefile.am
+--- autotrace-0.31.9/Makefile.am.omv~	2023-11-27 19:44:00.918860497 +0000
++++ autotrace-0.31.9/Makefile.am	2023-11-27 19:45:49.665322772 +0000
+@@ -132,6 +132,15 @@ autotraceinclude_HEADERS=\
+ 		src/color.h
+ 
+ libautotrace_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
++libautotrace_la_LIBADD = \
++		$(GRAPHICSMAGICK_LIBS)		\
++		$(IMAGEMAGICK_LIBS)		\
++		$(LIBPNG_LIBS)		\
++		$(LIBSWF_LIBS)		\
++		$(LIBPSTOEDIT_LIBS)		\
++		$(GLIB2_LIBS)			\
++		$(POPT_LIBS)			\
++		$(INTLLIBS) -lm
+ 
+ #
+ # noinst_HEADERS: headers shared between lib and bin.

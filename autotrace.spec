@@ -1,23 +1,21 @@
 %define	major		3
-%define	libname		%mklibname autotrace %{major}
+%define oldlibname	%mklibname autotrace 3
+%define	libname		%mklibname autotrace
 %define	develname	%mklibname autotrace -d
 %define _disable_lto 1
 %define _disable_rebuild_configure 1
 
-Summary:		Program for converting bitmap to vector graphics
+Summary:	Program for converting bitmap to vector graphics
 Name:		autotrace
-Version:		0.31.1
-Release:		43
+Version:	0.31.9
+Release:	1
 Group:		Publishing
-License:		GPLv2+ and LGPLv2+
+License:	GPLv2+ and LGPLv2+
 URL:		http://autotrace.sourceforge.net
-Source0:		http://prdownload.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-Patch0:		autotrace_0.31.1-13.diff
-Patch1:		autotrace-0.31.1-swf-output.patch
-Patch2:		autotrace-0.31.1-libpng-1.5.patch
-Patch3:		autotrace-0.31.1-libpng16.patch
+Source0:	https://github.com/autotrace/autotrace/archive/refs/tags/%{version}.tar.gz
+Patch0:		autotrace-0.31.9-linkage.patch
 BuildRequires:	pstoedit-devel
-BuildRequires:	imagemagick6-devel
+BuildRequires:	imagemagick-devel
 BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(libpng)
 # (Abel) doesn't work with newer libming
@@ -30,12 +28,13 @@ Autotrace is a program for converting bitmap to vector graphics. Supported
 formats:
 - input formats: BMP, TGA, PNM, PPM, PGM, PBM and those supported by
   ImageMagick;
-- export formats: Postscript, svg, xfig, swf, pstoedit, emf, dxf, cgm,
+- export formats: Postscript, svg, xfig, pstoedit, emf, dxf, cgm,
   mif, p2e and sk.
 
 %package -n	%{libname}
-Summary:		Autotrace libraries
+Summary:	Autotrace libraries
 Group:		System/Libraries
+%rename %{oldlibname}
 
 %description -n	%{libname}
 This package contains the libraries needed to run programs dynamically
@@ -55,21 +54,21 @@ This package contains the static libraries and header files for
 developing applications based on autotrace.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p0
-%patch2 -p0
-%patch3 -p1 -b .0003~
+%autosetup -p1
+./autogen.sh
+
+%configure
 
 %build
-%configure
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
-%files
-%doc AUTHORS ChangeLog COPYING FAQ README THANKS
+%find_lang %{name}
+
+%files -f %{name}.lang
+%doc AUTHORS ChangeLog COPYING FAQ THANKS
 %{_bindir}/autotrace
 %{_mandir}/man1/*
 
@@ -77,9 +76,6 @@ developing applications based on autotrace.
 %{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%doc README
-%{_bindir}/autotrace-config
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
-%{_datadir}/aclocal/*
