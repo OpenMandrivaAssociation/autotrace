@@ -18,6 +18,10 @@ BuildRequires:	pstoedit-devel
 BuildRequires:	imagemagick-devel
 BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(libpng)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gmodule-2.0)
+BuildRequires:	pkgconfig(gthread-2.0)
+BuildRequires:	pkgconfig(gobject-2.0)
 BuildRequires:	intltool
 BuildRequires:	gettext-devel
 BuildRequires:	glib-gettextize
