@@ -29,6 +29,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	make
+BuildRequires:	locales-extra-charsets
 # (Abel) doesn't work with newer libming
 #BuildConflicts:	libming-devel
 Provides:	fonttracer
