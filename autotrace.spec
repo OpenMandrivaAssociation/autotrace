@@ -19,6 +19,11 @@ BuildRequires:	imagemagick-devel
 BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	intltool
+BuildRequires:	gettext-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
+BuildRequires:	make
 # (Abel) doesn't work with newer libming
 #BuildConflicts:	libming-devel
 Provides:	fonttracer
