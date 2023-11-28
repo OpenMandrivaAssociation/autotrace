@@ -15,7 +15,7 @@ URL:		http://autotrace.sourceforge.net
 Source0:	https://github.com/autotrace/autotrace/archive/refs/tags/%{version}.tar.gz
 Patch0:		autotrace-0.31.9-linkage.patch
 BuildRequires:	pstoedit-devel
-BuildRequires:	imagemagick-devel
+BuildRequires:	graphicsmagick-devel
 BuildRequires:	pkgconfig(expat)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(glib-2.0)
