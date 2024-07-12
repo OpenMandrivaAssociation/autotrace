@@ -7,7 +7,7 @@
 
 Summary:	Program for converting bitmap to vector graphics
 Name:		autotrace
-Version:	0.31.9
+Version:	0.31.10
 Release:	1
 Group:		Publishing
 License:	GPLv2+ and LGPLv2+
