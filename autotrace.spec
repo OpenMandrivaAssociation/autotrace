@@ -11,7 +11,7 @@ Version:	0.31.10
 Release:	1
 Group:		Publishing
 License:	GPLv2+ and LGPLv2+
-URL:		http://autotrace.sourceforge.net
+URL:		https://autotrace.sourceforge.net
 Source0:	https://github.com/autotrace/autotrace/archive/refs/tags/%{version}.tar.gz
 Patch0:		autotrace-0.31.9-linkage.patch
 BuildRequires:	pstoedit-devel
