@@ -14,6 +14,8 @@ License:	GPLv2+ and LGPLv2+
 URL:		https://autotrace.sourceforge.net
 Source0:	https://github.com/autotrace/autotrace/archive/refs/tags/%{version}.tar.gz
 Patch0:		autotrace-0.31.9-linkage.patch
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	pstoedit-devel
 BuildRequires:	graphicsmagick-devel
 BuildRequires:	pkgconfig(expat)
